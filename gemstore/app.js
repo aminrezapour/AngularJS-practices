@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('gemStore', []);
+   var app = angular.module('gemStore', []);
 
    app.controller('StoreController', function(){
       this.products = gem;
@@ -24,6 +24,15 @@
         this.current = newGallery || 0;
       };
    });
+
+   app.controller("ReviewController", function(){
+      this.review = {};
+
+      this.addReview = function(product){
+        product.reviews.push(this.review);
+        this.review = {};
+      };
+    });
 
    var gem =[
      {

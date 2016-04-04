@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html ng-app="gemStore">
-  <head>
-    <meta charset="utf-8">
-    <!-- jQuery from Google APIs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <head>
+      <meta charset="utf-8">
+      <!-- jQuery from Google APIs -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <!-- Angular from google APIs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+      <!-- Angular from google APIs -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 
-    <!-- My Code -->
-    <script type="text/javascript" src="app.js"></script>
+      <!-- My Code -->
+      <script type="text/javascript" src="app.js"></script>
+      <link rel="stylesheet" type="text/css" href="application.css">
 
     </head>
+
     <body ng-controller="StoreController as store">
+
+      <header>
+        <h1 class="text-center">Flatlander Crafted Gems</h1>
+        <h2 class="text-center">– an Angular store –</h2>
+      </header>
 
       <!-- Products container -->
       <div class="list-group">
@@ -62,10 +69,49 @@
                 <h4>Specs</h4>
                 <blockquote>Shine: {{ product.shine }}</blockquote>
               </div>
+              <!--  Review Tab's Content  -->
               <div ng-show="tab.isSet(3)">
-                <h4>Reviews</h4>
-                <blockquote></blockquote>
+                <!--  Product Reviews List -->
+                <ul>
+                  <h4>Reviews</h4>
+                  <li ng-repeat="review in product.reviews">
+                    <blockquote>
+                      <strong>{{review.stars}} Stars</strong>
+                      {{review.body}}
+                      <cite class="clearfix">—{{review.author}}</cite>
+                    </blockquote>
+                  </li>
+                </ul>
+
+                <!--  Review Form -->
+                <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+                  <!--  Live Preview -->
+                  <blockquote >
+                    <strong>{{reviewCtrl.review.stars}} Stars</strong>
+                    {{reviewCtrl.review.body}}
+                    <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+                  </blockquote>
+
+                  <!--  Review Form -->
+                  <h4>Submit a Review</h4>
+                  <fieldset class="form-group">
+                    <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required >
+                      <option value="">Rate the Product</option>
+                    </select>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                  </fieldset>
+                </form>
               </div>
+
             </section>
 
           </div>
