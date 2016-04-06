@@ -14,10 +14,6 @@
           <h1>Angular Reddit</h1>
         </div>
 
-        <div>
-          {{test}}
-        </div>
-
         <div ng-repeat="post in posts | orderBy: '-upvotes'">
           <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
           {{post.upvotes}}
@@ -26,8 +22,6 @@
             <span ng-hide="post.link">{{post.title}}</span>
           </span>
         </div>
-
-        <button ng-click="addPost()">Post</button> <!-- this doesn't execute, see app.js -->
 
         <form ng-submit="addPost()" id="new_post">
           <h3>Add a new post</h3>
