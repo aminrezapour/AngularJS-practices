@@ -1,0 +1,20 @@
+{
+  "name": "angular-reddit",
+  "homepage": "https://github.com/aminrezapour/AngularJS-practices",
+  "authors": [
+    "Amin Rezapour <aminrezapour@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
