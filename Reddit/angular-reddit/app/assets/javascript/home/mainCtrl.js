@@ -21,4 +21,4 @@ function($scope, posts){
   $scope.incrementUpvotes = function(post) {
     post.upvotes += 1; // note that post is referenced automatically
   };
-}])
+}]);
