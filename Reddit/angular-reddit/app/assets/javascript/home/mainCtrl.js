@@ -14,6 +14,6 @@ function($scope, posts){
     $scope.link = '';
   };
   $scope.incrementUpvotes = function(post) {
-    post.upvotes += 1; // note that post is referenced automatically
+    posts.upvote(post); // note that post is referenced automatically
   };
 }]);
