@@ -19,6 +19,8 @@ gem 'angular-rails-templates'
 gem 'responders', '~> 2.0'
 # This is because Rails has csrf protection enabled by default, and Angular isn't sending the token to Rails when we're trying to add a post
 gem 'angular_rails_csrf'
+# devise
+gem 'devise', '~> 3.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
