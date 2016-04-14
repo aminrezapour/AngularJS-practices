@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # This is a bad practice, a welcome controller is the best alternative
-  def angular
-    render 'layouts/application'
-  end
+  # def angular
+  #   render 'layouts/application'
+  # end
 
   private
   def configure_permitted_parameters
